@@ -21,13 +21,17 @@
     currentNumber;                                                      \
 })
 
-
+#define DO_SECRET_OPERATION(firstNumber, secondNumber)({    \
+    firstNumber SECRET_OPERATION secondNumber;       \
+})
 using namespace std;
 
-int main()
-{
+#define SECRET_OPERATION +
+
+int main() {
     LOG("INFO", "Program started");
     cout << SUMUP(0, 5) << endl;
-    cout << FIBONACCI(3);
+    cout << FIBONACCI(3) << endl;
+    cout << DO_SECRET_OPERATION(10, 20) << endl;
     return 0;
 }
