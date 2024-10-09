@@ -3,4 +3,6 @@ project(task2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(task2 src/main.cpp)
+add_executable(task2 src/main.cpp
+        src/stringtools.cpp
+        src/stringtools.h)
