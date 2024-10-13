@@ -29,12 +29,12 @@ std::string ToXML(const std::string& tagName, const std::string& data, const std
 
 std::string ToJSON(const std::string& tagName, const std::map<Key, std::string>& data, const std::string& indent) {
 	std::string result = indent + '"' + tagName + "\": { ";
-
+	std::vector<std::string> key_values;
 	for (const auto& [key, value] : data) {
-		result += "\"" + key + "\": " +  "\"" + value  + "\", ";
+		key_values.push_back('"' + key + '"' + ": " +  '"' + value  + '"');
 	}
 
-	return result + "}";
+	return result + join(key_values, ", ") + " }";
 }
 
 std::string ToJSON(const std::string& tagName, const std::vector<std::string>& data, const std::string& indent) {
