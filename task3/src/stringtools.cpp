@@ -18,7 +18,7 @@ std::string join(const std::vector<std::string>& elements, const std::string& de
     for (size_t i = 0; i < elements.size(); ++i) {
         result << elements[i];
         if (i != elements.size() - 1) {
-            result << delimiter + " ";
+            result << delimiter;
         }
     }
     return result.str();

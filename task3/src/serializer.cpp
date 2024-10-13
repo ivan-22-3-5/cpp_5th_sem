@@ -4,15 +4,27 @@
 #include "stringtools.h"
 
 std::string ToXML(const std::string& tagName, const std::map<Key, std::string>& data, const std::string& indent) {
-	return indent + "<!-- XML representation of MAP -->";
+	std::string result = indent + "<" + tagName + ">\n";
+
+	for (const auto& [key, value] : data) {
+		result += indent + "  <" + key + ">" + value + "</" + key + ">\n";
+	}
+
+	result += indent + "</" + tagName + ">";
+	return result;
 }
 
 std::string ToXML(const std::string& tagName, const std::vector<std::string>& data, const std::string& indent) {
-	return indent + "<!-- XML representation of VECTOR -->";
+	std::vector<std::string> result;
+
+	for (const auto& value : data) {
+		result.push_back( indent + "<" + tagName + ">" + value + "</" + tagName + ">" );
+	}
+	return join(result, "\n");
 }
 
-std::string ToXML(const std::string& tagName, const std::string& data, const std::string& indent) {
-	return indent + "<!-- XML representation of STRING -->";
+std::string ToXML(const std::string& tagName, const std::string& data, const std::string& indent ) {
+	return indent + "<" + tagName + ">" + data + "</" + tagName + ">";
 }
 
 std::string ToJSON(const std::string& tagName, const std::map<Key, std::string>& data, const std::string& indent) {
