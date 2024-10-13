@@ -38,13 +38,25 @@ std::string ToJSON(const std::string& tagName, const std::string& data, const st
 }
 
 std::string ToYAML(const std::string& tagName, const std::map<Key, std::string>& data, const std::string& indent) {
-	return indent + "<!-- YAML representation of MAP -->";
+	std::string result = indent  + tagName + ":\n";
+
+	for (const auto& [key, value] : data) {
+		result += indent + indent + key + ": " + value  + "\n";
+	}
+
+	return result;
 }
 
 std::string ToYAML(const std::string& tagName, const std::vector<std::string>& data, const std::string& indent) {
-	return indent + "<!-- YAML representation of VECTOR -->";
+	std::string result = indent  + tagName + ":\n";
+
+	for (const auto& value : data) {
+		result += indent + indent + "- " + value  + "\n";
+	}
+
+	return result;
 }
 
 std::string ToYAML(const std::string& tagName, const std::string& data, const std::string& indent) {
-	return indent + "<!-- YAML representation of STRING -->";
+	return indent + tagName + ": " + data;
 }
