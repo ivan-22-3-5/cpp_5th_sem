@@ -3,4 +3,6 @@ project(task4)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(task4 src/main.cpp)
+add_executable(task4 src/main.cpp
+        src/Image.cpp
+        src/Image.h)
