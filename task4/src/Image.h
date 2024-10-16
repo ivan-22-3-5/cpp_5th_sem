@@ -10,6 +10,9 @@ public:
     [[nodiscard]] unsigned int get_width() const;
     [[nodiscard]] unsigned int get_height() const;
 
+    [[nodiscard]] unsigned int get_pixel(unsigned int x, unsigned int y) const;
+    void set_pixel(unsigned int x, unsigned int y, unsigned char value);
+
 private:
     unsigned int width;
     unsigned int height;
