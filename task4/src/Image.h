@@ -6,6 +6,7 @@
 class Image {
 public:
     Image(unsigned int width, unsigned int height);
+    Image(unsigned int width, unsigned int height, unsigned char filling_value);
 
     [[nodiscard]] unsigned int get_width() const;
     [[nodiscard]] unsigned int get_height() const;
