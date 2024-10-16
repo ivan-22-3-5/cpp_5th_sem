@@ -17,11 +17,12 @@ public:
 
     void save_as_file(const std::string& filename) const;
 
+    [[nodiscard]] std::vector<unsigned int> build_histogram(unsigned char colnum) const;
 
 private:
     unsigned int width;
     unsigned int height;
-    std::vector<unsigned char> data;
+    std::vector<unsigned char> pixels;
 };
 
 
