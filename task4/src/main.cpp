@@ -3,16 +3,15 @@
 void print_image(const Image& image);
 
 int main() {
-    Image image(15, 10);
+    Image image1(640, 640);
 
-    for (unsigned int y = 0; y < image.get_height(); y++) {
-        for (unsigned int x = 0; x < image.get_width(); x++) {
-            image.set_pixel(x, y, 255);
+    for (unsigned int y = 0; y < image1.get_height(); y++) {
+        for (unsigned int x = 0; x < image1.get_width(); x++) {
+            image1.set_pixel(x, y, rand() % 256);
         }
     }
 
-    print_image(image);
-    print_image(Image(15, 10, 0));
+    image1.save_as_file("file1");
 
     return EXIT_SUCCESS;
 }

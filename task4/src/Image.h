@@ -1,5 +1,6 @@
 #ifndef IMAGE_H
 #define IMAGE_H
+#include <string>
 #include <vector>
 
 
@@ -13,6 +14,9 @@ public:
 
     [[nodiscard]] unsigned int get_pixel(unsigned int x, unsigned int y) const;
     void set_pixel(unsigned int x, unsigned int y, unsigned char value);
+
+    void save_as_file(const std::string& filename) const;
+
 
 private:
     unsigned int width;
