@@ -55,10 +55,16 @@ unsigned int Image::get_height() const {
 }
 
 unsigned int Image::get_pixel(const unsigned int x, const unsigned int y) const {
+    if (x >= width || y >= height) {
+        throw std::out_of_range("Index out of bounds.");
+    }
     return pixels.at(y * width + x);
 }
 
 void Image::set_pixel(const unsigned int x, const unsigned int y, const unsigned char value) {
+    if (x >= width || y >= height) {
+        throw std::out_of_range("Index out of bounds.");
+    }
     pixels.at(y * width + x) = value;
 }
 
