@@ -12,6 +12,40 @@ Image::Image(const unsigned int width, const unsigned int height, const unsigned
     : width(width), height(height), pixels(width * height, filling_value) {
 }
 
+Image::Image(const std::string& filename) {
+    std::ifstream file(filename, std::ios::binary);
+    if (!file) {
+        std::cerr << "Error: File could not be opened." << std::endl;
+        return;
+    }
+
+    std::string magic_number;
+    file >> magic_number;
+    if (magic_number != "P5") {
+        std::cerr << "Error: Unsupported file format." << std::endl;
+        return;
+    }
+
+    char ch;
+    file >> ch;
+    while (ch == '#') {
+        std::string comment_line;
+        std::getline(file, comment_line);
+        file >> ch;
+    }
+    file.unget();
+
+    file >> width >> height;
+    pixels.resize(width * height);
+    file.ignore(4);
+    for (unsigned int y = 0; y < height; y++) {
+        for (unsigned int x = 0; x < width; x++) {
+            file >> pixels.at(y * width + x);
+        }
+    }
+
+    file.close();
+}
 unsigned int Image::get_width() const {
     return width;
 }

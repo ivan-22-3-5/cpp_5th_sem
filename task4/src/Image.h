@@ -6,6 +6,7 @@
 
 class Image {
 public:
+    explicit Image(const std::string& filename);
     Image(unsigned int width, unsigned int height);
     Image(unsigned int width, unsigned int height, unsigned char filling_value);
 
@@ -20,8 +21,8 @@ public:
     [[nodiscard]] std::vector<unsigned int> build_histogram(unsigned char colnum) const;
 
 private:
-    unsigned int width;
-    unsigned int height;
+    unsigned int width{};
+    unsigned int height{};
     std::vector<unsigned char> pixels;
 };
 
