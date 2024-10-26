@@ -24,6 +24,9 @@ private:
     unsigned int width{};
     unsigned int height{};
     std::vector<unsigned char> pixels;
+
+    void read_pixels(std::ifstream& file);
+    static void skip_comments(std::ifstream& file);
 };
 
 

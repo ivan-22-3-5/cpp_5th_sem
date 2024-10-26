@@ -12,6 +12,28 @@ Image::Image(const unsigned int width, const unsigned int height, const unsigned
     : width(width), height(height), pixels(width * height, filling_value) {
 }
 
+void Image::read_pixels(std::ifstream& file) {
+    file >> width >> height;
+    pixels.resize(width * height);
+    file.ignore(4);
+    for (unsigned int y = 0; y < height; y++) {
+        for (unsigned int x = 0; x < width; x++) {
+            file >> pixels.at(y * width + x);
+        }
+    }
+}
+
+void Image::skip_comments(std::ifstream& file) {
+    char ch;
+    file >> ch;
+    while (ch == '#') {
+        std::string comment_line;
+        std::getline(file, comment_line);
+        file >> ch;
+    }
+    file.unget();
+}
+
 Image::Image(const std::string& filename) {
     std::ifstream file(filename, std::ios::binary);
     if (!file) {
@@ -26,23 +48,8 @@ Image::Image(const std::string& filename) {
         return;
     }
 
-    char ch;
-    file >> ch;
-    while (ch == '#') {
-        std::string comment_line;
-        std::getline(file, comment_line);
-        file >> ch;
-    }
-    file.unget();
-
-    file >> width >> height;
-    pixels.resize(width * height);
-    file.ignore(4);
-    for (unsigned int y = 0; y < height; y++) {
-        for (unsigned int x = 0; x < width; x++) {
-            file >> pixels.at(y * width + x);
-        }
-    }
+    skip_comments(file);
+    read_pixels(file);
 
     file.close();
 }

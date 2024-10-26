@@ -4,7 +4,7 @@
 void print_image(const Image &image);
 
 int main() {
-    Image image(5, 5, 4);
+    const Image image(5, 5, 4);
 
     print_image(image);
     std::cout << std::endl;
@@ -13,9 +13,9 @@ int main() {
     Image image2("file1.pgm");
     print_image(image2);
 
-    // for (unsigned int number: image.build_histogram(3)) {
-    //     std::cout << number << " ";
-    // }
+    for (const unsigned int number: image.build_histogram(3)) {
+        std::cout << number << " ";
+    }
 
     return EXIT_SUCCESS;
 }
