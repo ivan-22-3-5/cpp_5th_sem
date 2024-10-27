@@ -9,3 +9,8 @@ add_executable(task2 src/main.cpp
         src/filenames_parser.cpp
         src/filenames_parser.h)
 
+add_executable(test src/test.cpp
+        src/filenames_parser.cpp
+        src/filenames_parser.h
+        src/stringtools.cpp
+        src/stringtools.h)
