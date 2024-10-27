@@ -91,10 +91,12 @@ void Image::save_as_file(const std::string& filename) const {
 }
 
 std::vector<unsigned int> Image::build_histogram(unsigned char colnum) const {
-    int step = 255/colnum;
+    const int step = 255/colnum;
     std::vector<unsigned int> histogram(colnum, 0);
-    for (auto pixel:pixels) {
-        histogram[pixel/step]++;
+    for (const auto pixel:pixels) {
+        int index = pixel / step;
+        if (index >= colnum) index = colnum - 1;
+        histogram[index]++;
     }
     return histogram;
 }
