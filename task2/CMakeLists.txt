@@ -5,4 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(task2 src/main.cpp
         src/stringtools.cpp
-        src/stringtools.h)
+        src/stringtools.h
+        src/filenames_parser.cpp
+        src/filenames_parser.h)
+
