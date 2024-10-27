@@ -3,30 +3,30 @@
 #include <string>
 #include <vector>
 
+#include "loaders/ImageLoader.h"
+#include "Pixel.h"
 
 class Image {
 public:
-    explicit Image(const std::string& filename);
-    Image(unsigned int width, unsigned int height);
-    Image(unsigned int width, unsigned int height, unsigned char filling_value);
+    explicit Image(const std::string& filename, ImageLoader &loader);
+    Image(unsigned int width, unsigned int height, ImageLoader &loader);
+    Image(unsigned int width, unsigned int height, const Pixel &fill_with, ImageLoader &loader);
+
+    void set_loader(ImageLoader &loader);
 
     [[nodiscard]] unsigned int get_width() const;
     [[nodiscard]] unsigned int get_height() const;
 
-    [[nodiscard]] unsigned int get_pixel(unsigned int x, unsigned int y) const;
-    void set_pixel(unsigned int x, unsigned int y, unsigned char value);
+    [[nodiscard]] Pixel get_pixel(unsigned int x, unsigned int y) const;
+    void set_pixel(unsigned int x, unsigned int y, Pixel pixel);
 
     void save_as_file(const std::string& filename) const;
-
-    [[nodiscard]] std::vector<unsigned int> build_histogram(unsigned char colnum) const;
 
 private:
     unsigned int width{};
     unsigned int height{};
-    std::vector<unsigned char> pixels;
-
-    void read_pixels(std::ifstream& file);
-    static void skip_comments(std::ifstream& file);
+    ImageLoader &loader;
+    std::vector<Pixel> pixels;
 };
 
 
