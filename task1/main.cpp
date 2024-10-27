@@ -24,14 +24,26 @@
 #define DO_SECRET_OPERATION(firstNumber, secondNumber)({    \
     firstNumber SECRET_OPERATION secondNumber;       \
 })
+
+#define CREATE_PRINT_FUNCTION(name)       \
+void print##name() {                      \
+    std::cout << #name << std::endl;      \
+}
+
 using namespace std;
 
 #define SECRET_OPERATION +
+
+CREATE_PRINT_FUNCTION(Foo)
+CREATE_PRINT_FUNCTION(Bar)
 
 int main() {
     LOG("INFO", "Program started");
     cout << SUMUP(0, 5) << endl;
     cout << FIBONACCI(3) << endl;
     cout << DO_SECRET_OPERATION(10, 20) << endl;
+
+    printFoo();
+    printBar();
     return 0;
 }
