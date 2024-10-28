@@ -2,7 +2,6 @@
 #include <random>
 
 #include "Image.h"
-#include "loaders/PGMImageLoader.h"
 #include "loaders/PPMImageLoader.h"
 
 
@@ -16,16 +15,16 @@ Pixel generate_random_pixel() {
 }
 
 int main() {
-    PGMImageLoader PGM_loader;
     PPMImageLoader PPM_loader;
     Image image(600, 600, {255, 4, 0}, PPM_loader);
+
     for (unsigned int y = 0; y < image.get_height(); y++) {
         for (unsigned int x = 0; x < image.get_width(); x++) {
             image.set_pixel(x, y, generate_random_pixel());
         }
     }
     image.save_as_file("image");
-    Image image2("image", PPM_loader);
+
     return EXIT_SUCCESS;
 }
 

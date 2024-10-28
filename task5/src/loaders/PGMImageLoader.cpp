@@ -3,7 +3,6 @@
 
 #include "PGMImageLoader.h"
 
-
 void PGMImageLoader::save_as_file(const std::vector<Pixel>& pixels, unsigned int width, unsigned int height, const std::string &filename) {
     std::ofstream file(filename + ".pgm", std::ios::binary);
     if (!file) {

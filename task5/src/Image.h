@@ -12,7 +12,7 @@ public:
     Image(unsigned int width, unsigned int height, ImageLoader &loader);
     Image(unsigned int width, unsigned int height, const Pixel &fill_with, ImageLoader &loader);
 
-    void set_loader(ImageLoader &loader);
+    void set_loader(const ImageLoader &loader) const;
 
     [[nodiscard]] unsigned int get_width() const;
     [[nodiscard]] unsigned int get_height() const;
