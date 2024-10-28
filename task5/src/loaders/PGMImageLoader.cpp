@@ -12,8 +12,8 @@ void PGMImageLoader::save_as_file(const std::vector<Pixel>& pixels, unsigned int
     file << "P5\n" << width << " " << height << "\n" << "255\n";
     for (unsigned int y = 0; y < height; y++) {
         for (unsigned int x = 0; x < width; x++) {
-          	auto pixel = pixels.at(y * width + x);
-            file << static_cast<unsigned char>(0.3*pixel.red + 0.59*pixel.green + 0.11*pixel.blue);
+          	auto [red, green, blue] = pixels.at(y * width + x);
+            file << static_cast<int>(0.3*red + 0.59*green + 0.11*blue) << " ";
         }
         file << "\n";
     }
